@@ -1,0 +1,18 @@
+@import play.api.i18n.Messages
+@import play.api.mvc.RequestHeader
+@import org.webjars.play.WebJarsUtil
+@import controllers.AssetsFinder
+@import helper._
+
+
+@(user: models.User)(implicit request: RequestHeader, messages: Messages, webJarsUtil: WebJarsUtil, assets: AssetsFinder)
+
+@main(messages("home.title"), Some(user)) {
+    @form(action = controllers.routes.UserAccountController.upload(), 'enctype -> "multipart/form-data") {
+        <input type="file" name="image">
+        @CSRF.formField
+        <div class="buttons">
+            <input type="submit" value="Upload"/>
+        </div>
+    }
+}

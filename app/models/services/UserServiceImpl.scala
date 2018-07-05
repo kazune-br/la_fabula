@@ -56,7 +56,7 @@ class UserServiceImpl @Inject() (userDAO: UserDAO)(implicit ex: ExecutionContext
       case Some(user) => // Just Return Future[User]
         Future.successful(user)
       case None => // Insert a new user
-        userDAO.save("DUMMY", User(
+        userDAO.save(User(
           userID = UUID.randomUUID(),
           loginInfo = profile.loginInfo,
           firstName = profile.firstName,
